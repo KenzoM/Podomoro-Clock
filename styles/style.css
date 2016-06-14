@@ -1,0 +1,140 @@
+body{
+  background-color: #60CEB5;
+}
+
+.coffee{
+  background-color: #3F2616;
+  position: relative;
+  margin: 200px 600px auto;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 10px #59513C,
+  0 0 0 25px rgba(63, 38, 22, 0.7),
+  0 0 0 60px #7e7eab,
+  10px 0 50px 61px black,
+  0px 0px 0 100px #003E1F,
+  -300px -164px 0px -105px #3F2616,
+  -200px -185px 0px -105px #3F2616,
+  -268px -62px 0px -105px #3F2616,
+  -440px -278px 0 -130px #3F2616;
+}
+
+.coffee::before{
+  content: '';
+  width: 82px;
+  height: 158px;
+  background-color: #7e7eab;
+  position: absolute;
+  left: 360px;
+  bottom: 295px;
+  border-radius: 10%;
+  transform: rotate(45deg);
+  box-shadow: -3px -38px 66px -35px black;
+}
+
+.author{
+  width: 550px;
+  height: 200px;
+  background-color: #e2e2e2;
+  position: absolute;
+  right: 120px;
+  top: 20px;
+  border-radius: 5%;
+  box-shadow: 3px 0px 22px -1px black;
+}
+
+.notepad{
+  width: 288px;
+  height: 439px;
+  padding: 12px;
+  background-color: #e2e2e2;
+  position: fixed;
+  left: 70px;
+  bottom: 75px;
+  border-radius: 20px;
+  box-shadow: 3px 0px 57px -14px black,
+  0px -4px 0px 15px #9B6629;
+}
+
+
+
+.notepad::after{
+  content: '';
+  width: 150px;
+  height: 50px;
+  background-color: #01110A;
+  position: absolute;
+  left: 82px;
+  top: -36px;
+  border-radius: 50px 50px 10px 10px;
+}
+
+p{
+  font-family: 'Satisfy', cursive;
+  font-size: 30px;
+  margin-top: 25px;
+}
+#time > p{
+  text-align: center;
+  font-size: 50px;
+}
+
+.author > p {
+  font-size: 30px;
+  color: #54A4DE;
+  text-align: center;
+  border-bottom: 2px solid rgb(29, 132, 182);
+}
+
+#title{
+  font-family: 'Satisfy', cursive;
+  font-size: 40px;
+  margin-top: 8px;
+  border-style: solid;
+  border-radius: inherit;
+  text-align: center;
+}
+
+/*.number {
+  font-weight: bold;
+}*/
+
+.more, .less{
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.more:hover{
+  color: green;
+}
+
+.less:hover{
+  color:red;
+}
+
+#reset{
+  cursor: pointer;
+  font-size: 30px;
+  font-family: cursive;
+  text-align: center;
+  color: white;
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  background-color: #4CAF50;
+  position: absolute;;
+  bottom: 0px;
+  left: 350px;
+  border-radius: 20%;
+  box-shadow: 2px 1px 24px -1px black
+}
+
+#reset:hover{
+  background-color: #821717;
+}
+
+#time:hover{
+  color: green;
+  cursor: pointer;
+}
