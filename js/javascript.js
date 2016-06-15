@@ -98,6 +98,10 @@ $(document).ready(function(){
 
   $("#time").on('click','p', function(){
     start ++;
+    appendStudy();
+  });
+
+  function appendStudy(){
     var jam = $("#time > p").find(".number").text()
     var ham = $("#time > p").find(".second").text()
     jam = parseInt(jam) * 60;
@@ -118,7 +122,7 @@ $(document).ready(function(){
     } else{
       clearInterval(refresh);
     }
-  });
+  }
 
   function appendBreak(){
     var currentBreak = $("#break").find(".number").text();
@@ -134,7 +138,15 @@ $(document).ready(function(){
          if (timerLength === 0){
            alert("Break Time is Over!!");
            clearInterval(refresh);
-           $("#time").remove();
+           $("#time").empty();
+
+           $("#time").append("<p> <span class='sessionType'></span><span class='number'>"+
+             "</span>:<span class='second'></span </p>");
+           $("#time p").find(".sessionType").append("Session Time ")
+           $("#time p").find(".number").append(sessionDefault);
+           $("#time p").find(".second").append("00");
+           
+           appendStudy();
          } else {
            timerLength --;
            startTimer(timerLength, "break");
