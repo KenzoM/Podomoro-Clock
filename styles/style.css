@@ -58,7 +58,6 @@ body{
 }
 
 
-
 .notepad::after{
   content: '';
   width: 150px;
@@ -75,7 +74,7 @@ p{
   font-size: 30px;
   margin-top: 25px;
 }
-#time > p{
+#time > p, #breaktime > p{
   text-align: center;
   font-size: 50px;
 }
@@ -96,9 +95,6 @@ p{
   text-align: center;
 }
 
-/*.number {
-  font-weight: bold;
-}*/
 
 .more, .less{
   font-size: 18px;
@@ -134,7 +130,7 @@ p{
   background-color: #821717;
 }
 
-#time:hover{
+#time:hover, #breaktime:hover{
   color: green;
   cursor: pointer;
 }
