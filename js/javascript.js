@@ -27,7 +27,8 @@ $(document).ready(function(){
   $("#time").append("<p> <span class='sessionType'></span><span class='number'>"+
     "</span>:<span class='second'></span </p>");
   $("#time p").find(".sessionType").append("Session Time ")
-  $("#time p").find(".number").append(sessionDefault);
+  var currentNumber = $("#session").find(".number").text();
+  $("#time p").find(".number").append(currentNumber);
   $("#time p").find(".second").append("00");
 
   $("#reset").on('click', resetAll)
@@ -62,9 +63,7 @@ $(document).ready(function(){
     }
     var currentNumber = $(this).siblings(".number").text();
     $(this).siblings(".number").text(addition(currentNumber));
-    $("#time").html('<p>Session Time <span class="number">'+
-      addition(currentNumber) +'</span>:<span class="second">'+ "00"
-      +'</span></p>')
+    $("#time").find(".number").text(addition(currentNumber));
   })
 
   $("#session > p").children(".less").on('click',function(){
@@ -75,9 +74,7 @@ $(document).ready(function(){
     var currentNumber = $(this).siblings(".number").text();
     $(this).siblings(".number").text(subtract(currentNumber));
     if (subtract(currentNumber)){
-      $("#time").html('<p>Session Time <span class="number">'+
-        subtract(currentNumber) +'</span>:<span class="second">'+ "00"
-        +'</span></p>')
+      $("#time").find(".number").text(subtract(currentNumber));
     }
   })
 
@@ -99,7 +96,11 @@ $(document).ready(function(){
   });
 
   function whichAppend(el){
-    (el === "Session Time ") ? appendStudy() : appendBreak();
+    if(el === "Session Time "){
+      appendStudy()
+    } else{
+      appendBreak();
+    }
   }
   function appendStudy(){
     var jam = $("#time > p").find(".number").text()
@@ -118,7 +119,7 @@ $(document).ready(function(){
           timerLength --;
           startTimer(timerLength, "study");
         }
-      }, 30);
+      }, 10);
     } else{
       clearInterval(refresh);
     }
@@ -145,7 +146,8 @@ $(document).ready(function(){
            $("#time").append("<p> <span class='sessionType'></span><span class='number'>"+
              "</span>:<span class='second'></span </p>");
            $("#time p").find(".sessionType").append("Session Time ")
-           $("#time p").find(".number").append(sessionDefault);
+           var currentNumber = $("#session").find(".number").text();
+           $("#time p").find(".number").append(currentNumber);
            $("#time p").find(".second").append("00");
            appendStudy();
          } else {
