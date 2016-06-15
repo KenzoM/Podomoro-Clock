@@ -93,7 +93,6 @@ $(document).ready(function(){
   $("#break> p").children(".less").on('click',function(){
     var currentNumber = $(this).siblings(".number").text();
     $(this).siblings(".number").text(subtract(currentNumber));
-    $("#time").find(".number").text(subtract(currentNumber));
   })
 
 
