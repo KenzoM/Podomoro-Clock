@@ -34,9 +34,6 @@ $(document).ready(function(){
   $("#reset").on('click',function(){
     $("#session").find(".number").text(sessionDefault);
     $("#break").find(".number").text(breakDefault);
-    if ($("#breaktime".length)){
-      $("#breaktime").attr("id","time");
-    }
     $("#time").find(".sessionType").text("Session Time ");
     $("#time").find(".number").text(sessionDefault);
     $("#time").find(".second").text("00");
@@ -93,7 +90,7 @@ $(document).ready(function(){
   $("#break> p").children(".less").on('click',function(){
     var currentNumber = $(this).siblings(".number").text();
     $(this).siblings(".number").text(subtract(currentNumber));
-    $("#breaktime").find(".number").text(subtract(currentNumber));
+    $("#time").find(".number").text(subtract(currentNumber));
   })
 
 
@@ -134,12 +131,12 @@ $(document).ready(function(){
          if (timerLength === 0){
            alert("Break Time is Over!!");
            clearInterval(refresh);
-           $("#breaktime").remove();
+           $("#time").remove();
          } else {
            timerLength --;
            startTimer(timerLength, "#time");
          }
-       }, 1000);
+       }, 10);
      } else{
        clearInterval(refresh);
      }
