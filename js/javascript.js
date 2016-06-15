@@ -1,8 +1,6 @@
 $(document).ready(function(){
-
   var sessionDefault = 1;
   var breakDefault = 2;
-  var breakOffset = 0
   var start = 0;
   var refresh; //this is what will call the timer
 
@@ -57,7 +55,6 @@ $(document).ready(function(){
     $("#time").find(".second").text(seconds);
   }
 
-
   $("#session > p").children(".more").on('click',function(){
     if (start % 2 == 1){
       clearInterval(refresh)
@@ -95,12 +92,15 @@ $(document).ready(function(){
     $(this).siblings(".number").text(subtract(currentNumber));
   })
 
-
   $("#time").on('click','p', function(){
     start ++;
-    appendStudy();
+    var test = $(this).find(".sessionType").text();
+    whichAppend(test);
   });
 
+  function whichAppend(el){
+    (el === "Session Time ") ? appendStudy() : appendBreak();
+  }
   function appendStudy(){
     var jam = $("#time > p").find(".number").text()
     var ham = $("#time > p").find(".second").text()
@@ -109,7 +109,6 @@ $(document).ready(function(){
     var timerLength = (jam + ham)
     if (start % 2 === 1){
       refresh = setInterval(function(){
-        console.log(refresh)
         if (timerLength === 0){
           alert("Break Time!");
           clearInterval(refresh);
@@ -148,7 +147,6 @@ $(document).ready(function(){
            $("#time p").find(".sessionType").append("Session Time ")
            $("#time p").find(".number").append(sessionDefault);
            $("#time p").find(".second").append("00");
-
            appendStudy();
          } else {
            timerLength --;
