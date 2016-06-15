@@ -109,6 +109,7 @@ $(document).ready(function(){
     var timerLength = (jam + ham)
     if (start % 2 === 1){
       refresh = setInterval(function(){
+        console.log(refresh)
         if (timerLength === 0){
           alert("Break Time!");
           clearInterval(refresh);
@@ -125,9 +126,11 @@ $(document).ready(function(){
   }
 
   function appendBreak(){
-    var currentBreak = $("#break").find(".number").text();
-    $("#time").append('<p> <span class="sessionType">Break Time </span><span class="number">'+
-      currentBreak +'</span>:<span class="second">00</span></p>');
+    if ($("#time").html().length === 0){
+      var currentBreak = $("#break").find(".number").text();
+      $("#time").append('<p> <span class="sessionType">Break Time </span><span class="number">'+
+        currentBreak +'</span>:<span class="second">00</span></p>');
+    };
      var jam = $("#time > p").find(".number").text()
      var ham = $("#time > p").find(".second").text()
      jam = parseInt(jam) * 60;
@@ -139,13 +142,13 @@ $(document).ready(function(){
            alert("Break Time is Over!!");
            clearInterval(refresh);
            $("#time").empty();
-
+           //needs to refactor this..
            $("#time").append("<p> <span class='sessionType'></span><span class='number'>"+
              "</span>:<span class='second'></span </p>");
            $("#time p").find(".sessionType").append("Session Time ")
            $("#time p").find(".number").append(sessionDefault);
            $("#time p").find(".second").append("00");
-           
+
            appendStudy();
          } else {
            timerLength --;
