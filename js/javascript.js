@@ -85,20 +85,21 @@ $(document).ready(function(){
   })
 
   function startTimer(length, attrID){
-    var typeSession = (attrID === "#time") ? "Session" : "Break"
+    var typeSession = (attrID === "#time") ? "Session Time " : "Break Time "
     var minutes = Math.floor(length / 60);
     minutes = (minutes < 10) ? "0" + minutes : minutes;
     var seconds = length % 60;
     seconds = (seconds < 10) ? "0" + seconds : seconds;
-    var text = '<p>'+ typeSession+ ' Time <span class="number">'+ minutes
-      +'</span>:<span class="second">'+ seconds +'</span></p>';
-    $(attrID).html(text);
+
+    $(attrID).find(".sessionType").text(typeSession);
+    $(attrID).find(".number").text(minutes);
+    $(attrID).find(".second").text(seconds);
   }
 
   function appendBreak(){
     $("<div id ='breaktime'></div>").insertAfter("#break");
-    $("#breaktime").append('<p>Break Time  <span class="number">'+ breakDefault
-     +'</span>:<span class="second">00</span></p>');
+    $("#breaktime").append('<p> <span class="sessionType">Break Time </span><span class="number">'+
+      breakDefault +'</span>:<span class="second">00</span></p>');
      var jam = $("#breaktime > p").find(".number").text()
      var ham = $("#breaktime > p").find(".second").text()
      jam = parseInt(jam) * 60;
@@ -118,10 +119,7 @@ $(document).ready(function(){
      } else{
        clearInterval(refresh);
      }
-
   }
-
-
 
   $("#time").click(function(){
     start ++;
@@ -141,7 +139,7 @@ $(document).ready(function(){
           timerLength --;
           startTimer(timerLength, "#time");
         }
-      }, 10);
+      }, 1000);
     } else{
       clearInterval(refresh);
     }
