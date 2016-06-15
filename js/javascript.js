@@ -2,6 +2,7 @@ $(document).ready(function(){
 
   var sessionDefault = 1;
   var breakDefault = 2;
+  var breakOffset = 0
   var start = 0;
   var refresh; //this is what will call the timer
 
@@ -119,8 +120,9 @@ $(document).ready(function(){
   });
 
   function appendBreak(){
+    var currentBreak = $("#break").find(".number").text();
     $("#time").append('<p> <span class="sessionType">Break Time </span><span class="number">'+
-      breakDefault +'</span>:<span class="second">00</span></p>');
+      currentBreak +'</span>:<span class="second">00</span></p>');
      var jam = $("#time > p").find(".number").text()
      var ham = $("#time > p").find(".second").text()
      jam = parseInt(jam) * 60;
