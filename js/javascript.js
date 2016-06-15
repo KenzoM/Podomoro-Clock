@@ -1,9 +1,21 @@
 $(document).ready(function(){
 
   var sessionDefault = 1;
-  var breakDefault = 5;
+  var breakDefault = 2;
   var start = 0;
   var refresh; //this is what will call the timer
+
+  function addition(number){
+    var answer = parseInt(number) + 1;
+    return answer;
+  }
+
+  function subtract(number){
+    if (number > 1){
+      var answer = parseInt(number) - 1;
+      return answer;
+    }
+  }
 
   $("#session").append('<p>Session Length: <span class="number">'+
   sessionDefault +'</span>' + '<span class="more"> more </span>' +
@@ -19,7 +31,7 @@ $(document).ready(function(){
   $("#time p").find(".number").append(sessionDefault);
   $("#time p").find(".second").append("00");
 
-  $("#reset").click(function(){
+  $("#reset").on('click',function(){
     $("#session").find(".number").text(sessionDefault);
     $("#break").find(".number").text(breakDefault);
     if ($("#breaktime".length)){
@@ -31,57 +43,6 @@ $(document).ready(function(){
 
     clearInterval(refresh);
     start = 0;
-  })
-
-
-  var sessionNumber = $("#session > p").children(".number").text();
-
-  function addition(number){
-    var answer = parseInt(number) + 1;
-    return answer;
-  }
-
-  function subtract(number){
-    if (number > 1){
-      var answer = parseInt(number) - 1;
-      return answer;
-    }
-  }
-
-  $("#session > p").children(".more").click(function(){
-    if (start % 2 == 1){
-      clearInterval(refresh)
-      start --;
-    }
-    var currentNumber = $(this).siblings(".number").text();
-    $(this).siblings(".number").text(addition(currentNumber));
-    $("#time").html('<p>Session Time <span class="number">'+
-      addition(currentNumber) +'</span>:<span class="second">'+ "00"
-      +'</span></p>')
-  })
-
-  $("#session > p").children(".less").click(function(){
-    if (start % 2 == 1){
-      clearInterval(refresh)
-      start --;
-    }
-    var currentNumber = $(this).siblings(".number").text();
-    $(this).siblings(".number").text(subtract(currentNumber));
-    if (subtract(currentNumber)){
-      $("#time").html('<p>Session Time <span class="number">'+
-        subtract(currentNumber) +'</span>:<span class="second">'+ "00"
-        +'</span></p>')
-    }
-  })
-
-  $("#break> p").children(".more").click(function(){
-    var currentNumber = $(this).siblings(".number").text();
-    $(this).siblings(".number").text(addition(currentNumber));
-  })
-
-  $("#break> p").children(".less").click(function(){
-    var currentNumber = $(this).siblings(".number").text();
-    $(this).siblings(".number").text(subtract(currentNumber));
   })
 
   function startTimer(length, attrID){
@@ -96,32 +57,47 @@ $(document).ready(function(){
     $(attrID).find(".second").text(seconds);
   }
 
-  function appendBreak(){
-    $("<div id ='breaktime'></div>").insertAfter("#break");
-    $("#breaktime").append('<p> <span class="sessionType">Break Time </span><span class="number">'+
-      breakDefault +'</span>:<span class="second">00</span></p>');
-     var jam = $("#breaktime > p").find(".number").text()
-     var ham = $("#breaktime > p").find(".second").text()
-     jam = parseInt(jam) * 60;
-     ham = parseInt(ham) ;
-     var timerLength = (jam + ham);
-     if (start % 2 === 1){
-       refresh = setInterval(function(){
-         if (timerLength === 0){
-           alert("Break Time is Over!!");
-           clearInterval(refresh);
-           $("#breaktime").remove();
-         } else {
-           timerLength --;
-           startTimer(timerLength, "#breaktime");
-         }
-       }, 1000);
-     } else{
-       clearInterval(refresh);
-     }
-  }
 
-  $("#time").click(function(){
+  $("#session > p").children(".more").on('click',function(){
+    if (start % 2 == 1){
+      clearInterval(refresh)
+      start --;
+    }
+    var currentNumber = $(this).siblings(".number").text();
+    $(this).siblings(".number").text(addition(currentNumber));
+    $("#time").html('<p>Session Time <span class="number">'+
+      addition(currentNumber) +'</span>:<span class="second">'+ "00"
+      +'</span></p>')
+  })
+
+  $("#session > p").children(".less").on('click',function(){
+    if (start % 2 == 1){
+      clearInterval(refresh)
+      start --;
+    }
+    var currentNumber = $(this).siblings(".number").text();
+    $(this).siblings(".number").text(subtract(currentNumber));
+    if (subtract(currentNumber)){
+      $("#time").html('<p>Session Time <span class="number">'+
+        subtract(currentNumber) +'</span>:<span class="second">'+ "00"
+        +'</span></p>')
+    }
+  })
+
+  $("#break> p").children(".more").on('click',function(){
+    var currentNumber = $(this).siblings(".number").text();
+    $(this).siblings(".number").text(addition(currentNumber));
+
+  })
+
+  $("#break> p").children(".less").on('click',function(){
+    var currentNumber = $(this).siblings(".number").text();
+    $(this).siblings(".number").text(subtract(currentNumber));
+    $("#breaktime").find(".number").text(subtract(currentNumber));
+  })
+
+
+  $("#time").on('click','p', function(){
     start ++;
     var jam = $("#time > p").find(".number").text()
     var ham = $("#time > p").find(".second").text()
@@ -133,15 +109,39 @@ $(document).ready(function(){
         if (timerLength === 0){
           alert("Break Time!");
           clearInterval(refresh);
-          $("#time").remove();
+          $("#time").empty();
           appendBreak();
         } else {
           timerLength --;
           startTimer(timerLength, "#time");
         }
-      }, 1000);
+      }, 30);
     } else{
       clearInterval(refresh);
     }
   });
+
+  function appendBreak(){
+    $("#time").append('<p> <span class="sessionType">Break Time </span><span class="number">'+
+      breakDefault +'</span>:<span class="second">00</span></p>');
+     var jam = $("#time > p").find(".number").text()
+     var ham = $("#time > p").find(".second").text()
+     jam = parseInt(jam) * 60;
+     ham = parseInt(ham) ;
+     var timerLength = (jam + ham);
+     if (start % 2 === 1){
+       refresh = setInterval(function(){
+         if (timerLength === 0){
+           alert("Break Time is Over!!");
+           clearInterval(refresh);
+           $("#breaktime").remove();
+         } else {
+           timerLength --;
+           startTimer(timerLength, "#time");
+         }
+       }, 1000);
+     } else{
+       clearInterval(refresh);
+     }
+  }
 });
