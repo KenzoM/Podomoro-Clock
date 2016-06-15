@@ -32,7 +32,9 @@ $(document).ready(function(){
   $("#time p").find(".number").append(sessionDefault);
   $("#time p").find(".second").append("00");
 
-  $("#reset").on('click',function(){
+  $("#reset").on('click', resetAll)
+
+  function resetAll(){
     $("#session").find(".number").text(sessionDefault);
     $("#break").find(".number").text(breakDefault);
     $("#time").find(".sessionType").text("Session Time ");
@@ -41,7 +43,7 @@ $(document).ready(function(){
 
     clearInterval(refresh);
     start = 0;
-  })
+  }
 
   function startTimer(length, attrID){
     var typeSession = (attrID === "study") ? "Session Time " : "Break Time "
