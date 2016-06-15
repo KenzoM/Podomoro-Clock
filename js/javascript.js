@@ -43,15 +43,15 @@ $(document).ready(function(){
   })
 
   function startTimer(length, attrID){
-    var typeSession = (attrID === "#time") ? "Session Time " : "Break Time "
+    var typeSession = (attrID === "study") ? "Session Time " : "Break Time "
     var minutes = Math.floor(length / 60);
     minutes = (minutes < 10) ? "0" + minutes : minutes;
     var seconds = length % 60;
     seconds = (seconds < 10) ? "0" + seconds : seconds;
 
-    $(attrID).find(".sessionType").text(typeSession);
-    $(attrID).find(".number").text(minutes);
-    $(attrID).find(".second").text(seconds);
+    $("#time").find(".sessionType").text(typeSession);
+    $("#time").find(".number").text(minutes);
+    $("#time").find(".second").text(seconds);
   }
 
 
@@ -110,7 +110,7 @@ $(document).ready(function(){
           appendBreak();
         } else {
           timerLength --;
-          startTimer(timerLength, "#time");
+          startTimer(timerLength, "study");
         }
       }, 30);
     } else{
@@ -134,7 +134,7 @@ $(document).ready(function(){
            $("#time").remove();
          } else {
            timerLength --;
-           startTimer(timerLength, "#time");
+           startTimer(timerLength, "break");
          }
        }, 10);
      } else{
