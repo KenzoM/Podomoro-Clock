@@ -5,7 +5,7 @@ body{
 .coffee{
   background-color: #3F2616;
   position: relative;
-  margin: 200px 600px auto;
+  margin: 185px 600px auto;
   width: 350px;
   height: 350px;
   border-radius: 50%;
@@ -49,9 +49,9 @@ body{
   height: 439px;
   padding: 12px;
   background-color: #e2e2e2;
-  position: fixed;
-  left: 70px;
-  bottom: 75px;
+  position: absolute;
+  left: 64px;
+  bottom: 25px;
   border-radius: 20px;
   box-shadow: 3px 0px 57px -14px black,
   0px -4px 0px 15px #9B6629;

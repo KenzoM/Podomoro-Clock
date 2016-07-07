@@ -1,6 +1,6 @@
 $(document).ready(function(){
-  var sessionDefault = 1;
-  var breakDefault = 2;
+  var sessionDefault = 25;
+  var breakDefault = 5;
   var start = 0;
   var refresh; //this is what will call the timer
 
@@ -64,6 +64,7 @@ $(document).ready(function(){
     var currentNumber = $(this).siblings(".number").text();
     $(this).siblings(".number").text(addition(currentNumber));
     $("#time").find(".number").text(addition(currentNumber));
+    $("#time").find(".second").text("00")
   })
 
   $("#session > p").children(".less").on('click',function(){
@@ -75,6 +76,7 @@ $(document).ready(function(){
     $(this).siblings(".number").text(subtract(currentNumber));
     if (subtract(currentNumber)){
       $("#time").find(".number").text(subtract(currentNumber));
+      $("#time").find(".second").text("00")
     }
   })
 
@@ -119,7 +121,7 @@ $(document).ready(function(){
           timerLength --;
           startTimer(timerLength, "study");
         }
-      }, 10);
+      }, 1000);
     } else{
       clearInterval(refresh);
     }
@@ -154,7 +156,7 @@ $(document).ready(function(){
            timerLength --;
            startTimer(timerLength, "break");
          }
-       }, 10);
+       }, 1000);
      } else{
        clearInterval(refresh);
      }
