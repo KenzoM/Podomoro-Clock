@@ -57,7 +57,6 @@ $(document).ready(function(){
   }
 
   $("#session > p").children(".more").on('click',function(){
-    //  event.preventDefault();
     if (start % 2 == 1){
       clearInterval(refresh)
       start --;
