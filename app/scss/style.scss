@@ -22,7 +22,7 @@ repeating-linear-gradient(135deg, transparent 5px, hsla(197, 62%, 11%, 0.5) 5px,
   }
   background-color: #e2e2e2;;
   margin: 90px auto;
-  width: 67%;
+  width: 250px;
   background: #e2e2e2;
   display: flex;
   flex-wrap: wrap;
@@ -100,6 +100,9 @@ repeating-linear-gradient(135deg, transparent 5px, hsla(197, 62%, 11%, 0.5) 5px,
   body{
     background-color: skyblue;
   }
+  .notepad{
+    width: 450px;
+  }
 
   #title{
     font-size: 55px;
@@ -111,7 +114,6 @@ repeating-linear-gradient(135deg, transparent 5px, hsla(197, 62%, 11%, 0.5) 5px,
       font-size: 40px;
       .more, .less{
         font-size: 30px;
-
       }
     }
   }
